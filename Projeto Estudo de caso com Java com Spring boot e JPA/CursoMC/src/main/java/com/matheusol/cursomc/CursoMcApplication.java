@@ -71,9 +71,9 @@ public class CursoMcApplication implements CommandLineRunner {
 		Categoria cat1 = new Categoria(0, "Informática");
 		Categoria cat2 = new Categoria(0, "Escritório");
 
-		Produto p1 = new Produto(0, "Computador", 2000.00);
-		Produto p2 = new Produto(0, "Impressora", 800.00);
-		Produto p3 = new Produto(0, "Mouse", 80.00);
+		Produto p1 = new Produto(null, "Computador", 2000.00);
+		Produto p2 = new Produto(null, "Impressora", 800.00);
+		Produto p3 = new Produto(null, "Mouse", 80.00);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
@@ -101,8 +101,8 @@ public class CursoMcApplication implements CommandLineRunner {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
-		Pedido ped1 = new Pedido(0, sdf.parse("30/09/2017 10:32"), cli1, e1);
-		Pedido ped2 = new Pedido(0, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
 
 		Pagamento pagto1 = new PagamentoComCartao(0, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
@@ -117,12 +117,12 @@ public class CursoMcApplication implements CommandLineRunner {
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
 
-		ped1.getItems().addAll(Arrays.asList(ip1, ip2));
-		ped2.getItems().addAll(Arrays.asList(ip3));
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
 
-		p1.getItems().addAll(Arrays.asList(ip1));
-		p2.getItems().addAll(Arrays.asList(ip3));
-		p3.getItems().addAll(Arrays.asList(ip2));
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
 
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
